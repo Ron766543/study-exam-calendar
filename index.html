@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📅 Study Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>📅 Study Calendar</h1>
+      <div class="date-time">
+        <div id="current-date"></div>
+        <div id="current-time"></div>
+      </div>
+    </header>
+
+    <section class="calendar-panel">
+      <div class="calendar-header" role="region" aria-label="Calendar controls">
+        <button id="prev" aria-label="Previous month">◀</button>
+        <h2 id="month-year">Month Year</h2>
+        <button id="next" aria-label="Next month">▶</button>
+      </div>
+      <div id="calendar-days" role="grid" aria-label="Month view"></div>
+      <div class="legend" aria-hidden="false">
+        <span><i class="chip today"></i> Today</span>
+        <span><i class="chip study"></i> Study</span>
+        <span><i class="chip exam"></i> Exam</span>
+      </div>
+    </section>
+
+    <footer>
+      <p>💡 Click any date to mark it as Study 📘 or Exam 📕</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

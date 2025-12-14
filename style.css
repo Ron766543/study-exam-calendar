@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #fff);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.app {
+  --bg: #ffffff;
+  --muted: #6b7280;
+  --accent: #0ea5a4;
+  width: 100%;
+  max-width: 730px;
+  background: var(--bg);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(16,24,40,0.08);
+  padding: clamp(12px, 2.5vw, 28px);
+  margin: 12px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date-time {
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  color: var(--muted);
+  margin-top: 6px;
+}
+#calendar-days {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* enforced 4 columns */
+  gap: 12px;
+  width: 100%;
+}
+
+.calendar-panel { width: 100%; overflow-x: auto; }
+
+.calendar-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
+.calendar-header h2 { font-size: clamp(1rem, 2.2vw, 1.25rem); margin:0; }
+.calendar-header button { background:transparent; border:1px solid #e5e7eb; padding:8px 10px; border-radius:8px; cursor:pointer; transition:background .15s, transform .12s; }
+.calendar-header button:hover { background:#f8fafc; transform:translateY(-1px); }
+
+.day {
+  padding: clamp(4px, 1.5vw, 12px);
+  background: #fbfdff;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 6px 14px rgba(16,24,40,0.03);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  width: 90%;
+  height: 100%;
+}
+.day:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(16,24,40,0.06); }
+
+.empty { background: transparent; box-shadow: none; cursor: default; }
+
+.today {
+  background: linear-gradient(180deg,#fff59d,#ffeb3b);
+  color: #111;
+}
+.study {
+  background: linear-gradient(180deg,#bbdefb,#81d4fa);
+}
+.exam {
+  background: linear-gradient(180deg,#ffcdd2,#e57373);
+}
+
+footer {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.legend { display:flex; gap:12px; justify-content:center; margin-top:12px; flex-wrap:wrap; color:var(--muted); }
+.legend .chip { width:14px; height:14px; display:inline-block; border-radius:4px; margin-right:6px; vertical-align:middle; }
+.legend .chip.today { background: linear-gradient(180deg,#fff59d,#ffeb3b); }
+.legend .chip.study { background: linear-gradient(180deg,#bbdefb,#81d4fa); }
+.legend .chip.exam { background: linear-gradient(180deg,#ffcdd2,#e57373); }
+
+/* Fit calendar without internal scroll: fixed app height and distributed rows */
+.app {
+  height: clamp(520px, 78vh, 880px);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+.calendar-panel {
+  flex: 1;
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure grid uses 6 rows (max weeks per month) so cells size evenly */
+#calendar-days {
+  grid-template-rows: repeat(6, 1fr);
+  flex: 1;
+  height: auto;
+}
+
+/* Larger screens */
+@media (min-width: 800px) {
+  .app { height: clamp(560px, 99vh, 830px); }
+}
+
+/* Medium screens */
+@media (min-width: 480px) and (max-width: 799px) {
+  .app { height: clamp(520px, 88vh, 760px); }
+}
+
+/* Small screens: keep two columns, six rows */
+@media (max-width: 479px) {
+  .app { height: 92vh; }
+  #calendar-days { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 1fr); gap: 8px; }
+}
+
